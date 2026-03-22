@@ -7,27 +7,30 @@ const demos = [
     number: '01',
     title: 'Peluqueria',
     subtitle: 'Editorial. Sofisticada.',
-    image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1600&q=80'
+    image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1400&q=70'
   },
   {
     path: '/bar',
     number: '02',
     title: 'Bar Fuego',
     subtitle: 'Atmosfera. Noche.',
-    image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=80'
+    image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1400&q=70'
   },
   {
     path: '/fisioterapia',
     number: '03',
     title: 'Clinica',
     subtitle: 'Serena. Humana.',
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1600&q=80'
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1400&q=70'
   }
 ];
 
-const defaultBg = "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80"; // Minimalist dark architecture
-const buildSrcSet = (url: string, widths: number[]) =>
-  widths.map((width) => `${url.replace(/w=\d+/, `w=${width}`)} ${width}w`).join(', ');
+const defaultBg = "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1400&q=70";
+const transparentPixel = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
+const buildSrcSet = (url: string, widths: number[], quality = 70) =>
+  widths
+    .map((width) => `${url.replace(/w=\d+/, `w=${width}`).replace(/q=\d+/, `q=${quality}`)} ${width}w`)
+    .join(', ');
 ---
 
 <BaseLayout
@@ -37,9 +40,9 @@ const buildSrcSet = (url: string, widths: number[]) =>
 >
   <div class="hub-exhibition">
     <div class="background-reveals" aria-hidden="true">
-      <img src={defaultBg} srcset={buildSrcSet(defaultBg, [640, 960, 1280, 1600])} sizes="100vw" alt="" id="bg-default" class="demo-bg is-active" loading="eager" decoding="async" fetchpriority="high" />
+      <img src={defaultBg} srcset={buildSrcSet(defaultBg, [480, 768, 1024, 1400])} sizes="100vw" alt="" id="bg-default" class="demo-bg is-active" loading="eager" decoding="async" fetchpriority="high" />
       {demos.map((demo, i) => (
-        <img src={demo.image} srcset={buildSrcSet(demo.image, [640, 960, 1280, 1600])} sizes="100vw" alt="" id={`bg-${i}`} class="demo-bg" loading="lazy" decoding="async" />
+        <img src={transparentPixel} data-src={demo.image} data-srcset={buildSrcSet(demo.image, [480, 768, 1024, 1400])} sizes="100vw" alt="" id={`bg-${i}`} class="demo-bg" loading="lazy" decoding="async" fetchpriority="low" />
       ))}
       <div class="bg-overlay"></div>
     </div>
@@ -75,7 +78,15 @@ const buildSrcSet = (url: string, widths: number[]) =>
   const setActiveBg = (idx) => {
     bgs.forEach((bg) => bg.classList.remove('is-active'));
     const activeBg = document.getElementById(`bg-${idx}`);
-    if (activeBg) activeBg.classList.add('is-active');
+    if (!activeBg) return;
+
+    if (activeBg instanceof HTMLImageElement && activeBg.dataset.loaded !== 'true') {
+      if (activeBg.dataset.src) activeBg.src = activeBg.dataset.src;
+      if (activeBg.dataset.srcset) activeBg.srcset = activeBg.dataset.srcset;
+      activeBg.dataset.loaded = 'true';
+    }
+
+    activeBg.classList.add('is-active');
   };
 
   const setDefaultBg = () => {
