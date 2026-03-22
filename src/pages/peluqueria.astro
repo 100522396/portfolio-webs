@@ -12,6 +12,10 @@ const gallery = [
   'https://images.unsplash.com/photo-1487412912498-0447578fcca8?auto=format&fit=crop&w=1200&q=80',
   'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80'
 ];
+
+const heroImage = 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1600&q=80';
+const buildSrcSet = (url: string, widths: number[]) =>
+  widths.map((width) => `${url.replace(/w=\d+/, `w=${width}`)} ${width}w`).join(', ');
 ---
 
 <BaseLayout
@@ -23,7 +27,7 @@ const gallery = [
     
     <section class="editorial-hero animate-reveal">
       <div class="hero-image-wrap">
-        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1600&q=80" alt="Salon Editorial" class="hero-image" />
+        <img src={heroImage} srcset={buildSrcSet(heroImage, [640, 960, 1280, 1600])} sizes="(max-width: 1024px) 100vw, 55vw" alt="Salon Editorial" class="hero-image" width="1600" height="1067" loading="eager" decoding="async" fetchpriority="high" />
       </div>
       <div class="hero-text-block">
         <span class="text-eyebrow">Atelier Norte</span>
@@ -63,7 +67,7 @@ const gallery = [
     <section class="editorial-gallery">
       {gallery.map((img, i) => (
         <div class={`gallery-item item-${i}`}>
-          <img src={img} alt="Estilo Atelier" loading="lazy" />
+          <img src={img} srcset={buildSrcSet(img, [480, 768, 1024, 1200])} sizes="100vw" alt="Estilo Atelier" loading="lazy" decoding="async" width="1200" height="800" />
         </div>
       ))}
     </section>
@@ -76,26 +80,27 @@ const gallery = [
           <p>La disponibilidad es limitada. Reserva previa necesaria para todos los servicios curatoriales.</p>
         </div>
         <div class="booking-form-wrap">
-          <form class="minimal-form">
+          <p id="peluqueria-demo-form-note" class="sr-only">Formulario de demostración. No envía datos reales.</p>
+          <form class="minimal-form" data-demo-form aria-describedby="peluqueria-demo-form-note" novalidate>
             <div class="field-group">
-              <label>Identidad</label>
-              <input type="text" name="nombre" placeholder="Nombre completo" />
+              <label for="peluqueria-nombre">Identidad</label>
+              <input id="peluqueria-nombre" type="text" name="nombre" placeholder="Nombre completo" autocomplete="name" />
             </div>
             <div class="field-group">
-              <label>Contacto</label>
-              <input type="tel" name="telefono" placeholder="Teléfono" />
+              <label for="peluqueria-telefono">Contacto</label>
+              <input id="peluqueria-telefono" type="tel" name="telefono" placeholder="Teléfono" autocomplete="tel" inputmode="tel" />
             </div>
             <div class="field-group">
-              <label>Interés</label>
-              <select name="servicio">
+              <label for="peluqueria-servicio">Interés</label>
+              <select id="peluqueria-servicio" name="servicio" autocomplete="off">
                 <option>01. Corte Signature</option>
                 <option>02. Color Atelier</option>
                 <option>03. Ritual Evento</option>
               </select>
             </div>
             <div class="field-group">
-              <label>Visión</label>
-              <textarea name="mensaje" placeholder="Cuéntanos brevemente qué buscas proyectar..."></textarea>
+              <label for="peluqueria-mensaje">Visión</label>
+              <textarea id="peluqueria-mensaje" name="mensaje" placeholder="Cuéntanos brevemente qué buscas proyectar..." autocomplete="off"></textarea>
             </div>
             <button class="btn-avant" type="submit">Contactar Atelier</button>
           </form>
@@ -289,6 +294,9 @@ const gallery = [
     .manifesto-grid, .editorial-services, .booking-grid {
       grid-template-columns: 1fr;
       gap: 3rem;
+    }
+    .booking-context {
+      position: static;
     }
     .item-0, .item-1, .item-2 {
       grid-column: 1 / -1;

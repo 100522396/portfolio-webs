@@ -6,6 +6,11 @@ const treatments = [
   ['02', 'Readaptación', 'Protocolos biomecánicos específicos para devolver al sistema musculoesquelético su fuerza natural tras una lesión.'],
   ['03', 'Rendimiento', 'Análisis cinemático y ajuste de cargas para optimizar la eficiencia motriz en atletas y minimizar riesgos.']
 ];
+
+const heroImage = 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80';
+const bookingImage = 'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&w=1200&q=80';
+const buildSrcSet = (url: string, widths: number[]) =>
+  widths.map((width) => `${url.replace(/w=\d+/, `w=${width}`)} ${width}w`).join(', ');
 ---
 
 <BaseLayout
@@ -40,7 +45,7 @@ const treatments = [
             <div class="crosshair top-right"></div>
             <div class="crosshair bottom-left"></div>
             <div class="crosshair bottom-right"></div>
-            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80" alt="Diagnóstico Clínico" loading="eager" />
+            <img src={heroImage} srcset={buildSrcSet(heroImage, [480, 768, 1024, 1200])} sizes="(max-width: 1024px) 100vw, 50vw" alt="Diagnóstico Clínico" loading="eager" decoding="async" fetchpriority="high" width="1200" height="800" />
           </div>
         </div>
       </section>
@@ -50,6 +55,7 @@ const treatments = [
         <div class="section-badge">
           <span class="text-eyebrow">Protocolos de Intervención</span>
         </div>
+        <h2 class="sr-only">Tratamientos disponibles</h2>
         <div class="treatments-table">
           {treatments.map(([num, title, desc]) => (
             <article class="table-row">
@@ -65,16 +71,19 @@ const treatments = [
       <section class="blueprint-booking" id="analisis">
         <div class="booking-grid">
           <div class="booking-blueprint">
-            <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&w=1200&q=80" alt="Estructura y alineación" loading="lazy" />
+            <img src={bookingImage} srcset={buildSrcSet(bookingImage, [480, 768, 1024, 1200])} sizes="(max-width: 1024px) 100vw, 50vw" alt="Estructura y alineación" loading="lazy" decoding="async" width="1200" height="1800" />
           </div>
           <div class="booking-form-area">
             <h2 class="text-blueprint">Inicia<br/>Secuencia.</h2>
-            <form class="minimal-form blueprint-form">
+            <p id="fisioterapia-demo-form-note" class="sr-only">Formulario de demostración. No envía datos reales.</p>
+            <form class="minimal-form blueprint-form" data-demo-form aria-describedby="fisioterapia-demo-form-note" novalidate>
               <div class="field-row">
-                <input type="text" name="paciente" placeholder="ID Paciente / Nombre" />
+                <label class="sr-only" for="fisioterapia-paciente">ID Paciente o Nombre</label>
+                <input id="fisioterapia-paciente" type="text" name="paciente" placeholder="ID Paciente / Nombre" autocomplete="name" />
               </div>
               <div class="field-row">
-                <select name="objetivo">
+                <label class="sr-only" for="fisioterapia-objetivo">Protocolo</label>
+                <select id="fisioterapia-objetivo" name="objetivo" autocomplete="off">
                   <option>Seleccionar Protocolo</option>
                   <option>Evaluación Estructural</option>
                   <option>Intervención de Dolor</option>
@@ -82,7 +91,8 @@ const treatments = [
                 </select>
               </div>
               <div class="field-row">
-                <input type="date" name="fecha" />
+                <label class="sr-only" for="fisioterapia-fecha">Fecha</label>
+                <input id="fisioterapia-fecha" type="date" name="fecha" />
               </div>
               <button class="btn-avant btn-blueprint" type="submit">Procesar Clínica</button>
             </form>

@@ -11,6 +11,10 @@ const gallery = [
   'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
   'https://images.unsplash.com/photo-1516997121675-4c2d1684aa3e?auto=format&fit=crop&w=1200&q=80'
 ];
+
+const heroImage = 'https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?auto=format&fit=crop&w=1600&q=80';
+const buildSrcSet = (url: string, widths: number[]) =>
+  widths.map((width) => `${url.replace(/w=\d+/, `w=${width}`)} ${width}w`).join(', ');
 ---
 
 <BaseLayout
@@ -22,10 +26,7 @@ const gallery = [
     
     <section class="cinematic-hero animate-reveal">
       <div class="hero-bg">
-        <video autoplay loop muted playsinline class="hero-video" style="display:none;">
-          <!-- Fallback to image -->
-        </video>
-        <img src="https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?auto=format&fit=crop&w=1600&q=80" alt="Bar Atmosphere" class="hero-image" />
+        <img src={heroImage} srcset={buildSrcSet(heroImage, [640, 960, 1280, 1600])} sizes="100vw" alt="Bar Atmosphere" class="hero-image" width="1600" height="1067" loading="eager" decoding="async" fetchpriority="high" />
         <div class="hero-vignette"></div>
       </div>
       
@@ -54,7 +55,7 @@ const gallery = [
     <section class="cinematic-gallery">
       {gallery.map(img => (
         <div class="gallery-frame">
-          <img src={img} alt="Momentos" loading="lazy" />
+          <img src={img} srcset={buildSrcSet(img, [480, 768, 1024, 1200])} sizes="(max-width: 900px) 100vw, 50vw" alt="Momentos" loading="lazy" decoding="async" width="1200" height="800" />
         </div>
       ))}
     </section>
@@ -62,19 +63,23 @@ const gallery = [
     <section class="cinematic-booking" id="reservar">
       <div class="booking-glass">
         <h2 class="text-display">Asegura<br/>Tu Sitio.</h2>
-        <form class="minimal-form dark-form">
+        <p id="bar-demo-form-note" class="sr-only">Formulario de demostración. No envía datos reales.</p>
+        <form class="minimal-form dark-form" data-demo-form aria-describedby="bar-demo-form-note" novalidate>
           <div class="field-group">
-            <input type="text" name="nombre" placeholder="Responsable de la reserva" />
+            <label class="sr-only" for="bar-nombre">Responsable de la reserva</label>
+            <input id="bar-nombre" type="text" name="nombre" placeholder="Responsable de la reserva" autocomplete="name" />
           </div>
           <div class="field-group">
-            <select name="personas">
+            <label class="sr-only" for="bar-personas">Número de personas</label>
+            <select id="bar-personas" name="personas" autocomplete="off">
               <option>2 Personas</option>
               <option>4 Personas</option>
               <option>Grupo (+6)</option>
             </select>
           </div>
           <div class="field-group">
-            <input type="time" name="hora" />
+            <label class="sr-only" for="bar-hora">Hora</label>
+            <input id="bar-hora" type="time" name="hora" />
           </div>
           <button class="btn-avant btn-neon" type="submit">Confirmar</button>
         </form>
@@ -93,6 +98,7 @@ const gallery = [
   .cinematic-hero {
     position: relative;
     min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
@@ -273,6 +279,9 @@ const gallery = [
   @media (max-width: 900px) {
     .cinematic-menu {
       grid-template-columns: 1fr;
+    }
+    .menu-intro {
+      position: static;
     }
     .cinematic-gallery {
       grid-template-columns: 1fr;

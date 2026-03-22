@@ -26,6 +26,8 @@ const demos = [
 ];
 
 const defaultBg = "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80"; // Minimalist dark architecture
+const buildSrcSet = (url: string, widths: number[]) =>
+  widths.map((width) => `${url.replace(/w=\d+/, `w=${width}`)} ${width}w`).join(', ');
 ---
 
 <BaseLayout
@@ -35,9 +37,9 @@ const defaultBg = "https://images.unsplash.com/photo-1513694203232-719a280e022f?
 >
   <div class="hub-exhibition">
     <div class="background-reveals" aria-hidden="true">
-      <img src={defaultBg} alt="" id="bg-default" class="demo-bg is-active" loading="eager" />
+      <img src={defaultBg} srcset={buildSrcSet(defaultBg, [640, 960, 1280, 1600])} sizes="100vw" alt="" id="bg-default" class="demo-bg is-active" loading="eager" decoding="async" fetchpriority="high" />
       {demos.map((demo, i) => (
-        <img src={demo.image} alt="" id={`bg-${i}`} class="demo-bg" loading="lazy" />
+        <img src={demo.image} srcset={buildSrcSet(demo.image, [640, 960, 1280, 1600])} sizes="100vw" alt="" id={`bg-${i}`} class="demo-bg" loading="lazy" decoding="async" />
       ))}
       <div class="bg-overlay"></div>
     </div>
@@ -49,7 +51,7 @@ const defaultBg = "https://images.unsplash.com/photo-1513694203232-719a280e022f?
         <p class="hub-desc">Explora tres aproximaciones de diseño asimétrico y vanguardista para negocios locales.</p>
       </header>
 
-      <nav class="hub-menu animate-reveal" style="animation-delay: 200ms;">
+      <nav class="hub-menu animate-reveal" style="animation-delay: 200ms;" aria-label="Demos disponibles">
         {demos.map((demo, i) => (
           <a href={demo.path} class="menu-item" data-index={i}>
             <span class="menu-number">{demo.number}</span>
@@ -69,20 +71,44 @@ const defaultBg = "https://images.unsplash.com/photo-1513694203232-719a280e022f?
   const items = document.querySelectorAll('.menu-item');
   const bgs = document.querySelectorAll('.demo-bg');
   const defaultBgImg = document.getElementById('bg-default');
+
+  const setActiveBg = (idx) => {
+    bgs.forEach((bg) => bg.classList.remove('is-active'));
+    const activeBg = document.getElementById(`bg-${idx}`);
+    if (activeBg) activeBg.classList.add('is-active');
+  };
+
+  const setDefaultBg = () => {
+    bgs.forEach((bg) => bg.classList.remove('is-active'));
+    if (defaultBgImg) defaultBgImg.classList.add('is-active');
+  };
   
-  items.forEach(item => {
+  items.forEach((item) => {
+    const idx = item.getAttribute('data-index');
+    if (!idx) return;
+
     item.addEventListener('mouseenter', () => {
-      const idx = item.getAttribute('data-index');
-      bgs.forEach(bg => bg.classList.remove('is-active'));
-      const activeBg = document.getElementById(`bg-${idx}`);
-      if(activeBg) activeBg.classList.add('is-active');
+      setActiveBg(idx);
+    });
+
+    item.addEventListener('focus', () => {
+      setActiveBg(idx);
+    });
+
+    item.addEventListener('touchstart', () => {
+      setActiveBg(idx);
     });
   });
   
   if (menu) {
     menu.addEventListener('mouseleave', () => {
-      bgs.forEach(bg => bg.classList.remove('is-active'));
-      if(defaultBgImg) defaultBgImg.classList.add('is-active');
+      setDefaultBg();
+    });
+
+    menu.addEventListener('focusout', (event) => {
+      if (!menu.contains(event.relatedTarget)) {
+        setDefaultBg();
+      }
     });
   }
 </script>
@@ -90,6 +116,7 @@ const defaultBg = "https://images.unsplash.com/photo-1513694203232-719a280e022f?
 <style is:global>
   .hub-exhibition {
     min-height: 100vh;
+    min-height: 100svh;
     padding: 10rem 2.5rem 4rem;
     position: relative;
     display: grid;
