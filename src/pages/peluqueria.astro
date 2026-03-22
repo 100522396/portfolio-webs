@@ -2,361 +2,323 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const services = [
-  ['Corte de autor', 'Diagnostico de visagismo, lavado sensorial y acabado editorial.'],
-  ['Color a medida', 'Balayage, gloss y correcciones con enfoque en brillo y naturalidad.'],
-  ['Ritual de evento', 'Peinado, textura y maquillaje social para bodas y ocasiones especiales.']
+  ['01. Corte Signature', 'Diagnóstico de visagismo, lavado sensorial y acabado arquitectónico. Un estudio de tus proporciones para un resultado duradero y sin esfuerzo diario.'],
+  ['02. Color Atelier', 'Balayage, gloss y correcciones con enfoque en luz, contraste y naturalidad absoluta.'],
+  ['03. Ritual Evento', 'Peinado, textura pura y maquillaje editorial para ocasiones donde la presencia importa.']
 ];
 
 const gallery = [
   'https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1200&q=80',
   'https://images.unsplash.com/photo-1487412912498-0447578fcca8?auto=format&fit=crop&w=1200&q=80',
-  'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80',
-  'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80'
+  'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80'
 ];
 ---
 
 <BaseLayout
-  title="Atelier Norte | Demo de peluqueria"
-  description="Demo de una web de peluqueria con enfoque editorial, premium y orientado a reservas."
+  title="Atelier Norte | High Fashion Editorial"
+  description="Demo de peluquería vanguardista."
   path="/peluqueria"
 >
-  <section class="salon-hero section-shell">
-    <div class="salon-overlay"></div>
-    <div class="salon-copy">
-      <span class="eyebrow">Demo peluqueria · estilo editorial</span>
-      <h1>Atelier Norte</h1>
-      <p>
-        Un salon donde el corte se diseña como una firma personal. Esta demo mezcla imagen aspiracional,
-        tipografia elegante y un sistema de reserva pensado para convertir visitas en citas.
-      </p>
-      <div class="salon-actions">
-        <a class="button primary" href="#reserva">Reservar cita</a>
-        <a class="button secondary" href="#galeria">Ver galeria</a>
+  <div class="editorial-container">
+    
+    <section class="editorial-hero animate-reveal">
+      <div class="hero-image-wrap">
+        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1600&q=80" alt="Salon Editorial" class="hero-image" />
       </div>
-    </div>
-    <aside class="booking-note">
-      <strong>Agenda de esta semana</strong>
-      <p>Color creativo, corte premium y ritual de evento con plazas limitadas.</p>
-      <ul>
-        <li>Martes a sabado · 10:00 - 20:00</li>
-        <li>Calle Fernando VI, 14 · Madrid</li>
-        <li>Consulta express por WhatsApp en menos de 15 min</li>
-      </ul>
-    </aside>
-  </section>
+      <div class="hero-text-block">
+        <span class="text-eyebrow">Atelier Norte</span>
+        <h1 class="text-display italic">La forma<br/>sigue a la<br/>identidad.</h1>
+        <div class="hero-details">
+          <p>Un salón donde el cabello se trata como materia escultórica. Cortes limpios, color calculado y estética utilitaria con alma premium.</p>
+          <a class="btn-avant" href="#reserva">Reservar Cita</a>
+        </div>
+      </div>
+    </section>
 
-  <section class="salon-story section-shell">
-    <div>
-      <span class="eyebrow">Posicionamiento</span>
-      <h2>Una peluqueria para quien quiere verse pulida, actual y reconocible.</h2>
-    </div>
-    <p>
-      Atelier Norte se presenta como un espacio boutique: pocas citas, mucha atencion al detalle y una experiencia
-      visual que convierte el servicio en deseo. La web usa fotografia dominante, contraste suave y un lenguaje
-      editorial para reforzar ese valor premium.
-    </p>
-  </section>
+    <section class="editorial-manifesto">
+      <div class="manifesto-grid">
+        <div class="manifesto-lead">
+          <h2 class="text-huge">01.<br/>Vision.</h2>
+        </div>
+        <div class="manifesto-body">
+          <p>Atelier Norte rechaza el ornamento innecesario. Creemos en la funcionalidad de un buen corte y en la química exacta de un color que evoluciona maravillosamente con el tiempo. Nuestro equipo actúa como curador de tu estilo personal.</p>
+        </div>
+      </div>
+    </section>
 
-  <section class="salon-services section-shell">
-    <div class="section-head">
-      <span class="eyebrow">Servicios</span>
-      <h2>Los tratamientos estrella</h2>
-    </div>
-    <div class="service-grid">
-      {services.map(([title, text]) => (
-        <article>
-          <strong>{title}</strong>
-          <p>{text}</p>
-        </article>
+    <section class="editorial-services">
+      <div class="services-header">
+        <h2 class="text-display">Servicios<br/>Curation.</h2>
+      </div>
+      <div class="services-list">
+        {services.map(([title, desc]) => (
+          <article class="service-row">
+            <h3 class="service-title">{title}</h3>
+            <p class="service-desc">{desc}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="editorial-gallery">
+      {gallery.map((img, i) => (
+        <div class={`gallery-item item-${i}`}>
+          <img src={img} alt="Estilo Atelier" loading="lazy" />
+        </div>
       ))}
-    </div>
-  </section>
+    </section>
 
-  <section class="salon-gallery section-shell" id="galeria">
-    <div class="section-head">
-      <span class="eyebrow">Galeria</span>
-      <h2>Color, textura, movimiento</h2>
-    </div>
-    <div class="gallery-grid">
-      {gallery.map((image) => <img src={image} alt="Trabajo de peluqueria" loading="lazy" />)}
-    </div>
-  </section>
-
-  <section class="salon-team section-shell">
-    <div class="portrait"></div>
-    <div class="team-copy">
-      <span class="eyebrow">Equipo</span>
-      <h2>Pequeno equipo, criterio muy claro.</h2>
-      <p>
-        En esta propuesta el equipo se presenta como parte del valor: estilistas especializados, trato cercano y
-        una experiencia mas calmada que la peluqueria tradicional de alto volumen.
-      </p>
-      <div class="quote">
-        “La mayoria de clientas no buscan solo un corte. Buscan salir sintiendose alineadas con la imagen que quieren proyectar.”
+    <section class="editorial-booking" id="reserva">
+      <div class="booking-grid">
+        <div class="booking-context">
+          <span class="text-eyebrow">RSVP</span>
+          <h2 class="text-display">Solicitar<br/>Espacio.</h2>
+          <p>La disponibilidad es limitada. Reserva previa necesaria para todos los servicios curatoriales.</p>
+        </div>
+        <div class="booking-form-wrap">
+          <form class="minimal-form">
+            <div class="field-group">
+              <label>Identidad</label>
+              <input type="text" name="nombre" placeholder="Nombre completo" />
+            </div>
+            <div class="field-group">
+              <label>Contacto</label>
+              <input type="tel" name="telefono" placeholder="Teléfono" />
+            </div>
+            <div class="field-group">
+              <label>Interés</label>
+              <select name="servicio">
+                <option>01. Corte Signature</option>
+                <option>02. Color Atelier</option>
+                <option>03. Ritual Evento</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label>Visión</label>
+              <textarea name="mensaje" placeholder="Cuéntanos brevemente qué buscas proyectar..."></textarea>
+            </div>
+            <button class="btn-avant" type="submit">Contactar Atelier</button>
+          </form>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <section class="salon-booking section-shell" id="reserva">
-    <div>
-      <span class="eyebrow">Reserva</span>
-      <h2>Pide tu cita</h2>
-      <p>Formulario demostrativo para captar reservas, preferencias y disponibilidad horaria.</p>
-    </div>
-    <form class="booking-form">
-      <div class="field-grid two">
-        <label>
-          Nombre completo
-          <input type="text" name="nombre" placeholder="Tu nombre" />
-        </label>
-        <label>
-          Telefono
-          <input type="tel" name="telefono" placeholder="600 123 456" />
-        </label>
-      </div>
-      <div class="field-grid two">
-        <label>
-          Servicio
-          <select name="servicio">
-            <option>Corte de autor</option>
-            <option>Color a medida</option>
-            <option>Ritual de evento</option>
-          </select>
-        </label>
-        <label>
-          Fecha ideal
-          <input type="date" name="fecha" />
-        </label>
-      </div>
-      <label>
-        Cuentanos tu idea
-        <textarea name="mensaje" placeholder="Quiero refrescar el color y mantener longitud, buscando un acabado natural..."></textarea>
-      </label>
-      <button class="button primary" type="submit">Enviar solicitud</button>
-    </form>
-  </section>
+    </section>
+  </div>
 </BaseLayout>
 
 <style>
-  :global(body) {
-    background: linear-gradient(180deg, #f4ede3 0%, #eadfd0 100%);
+  .editorial-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 10rem 2.5rem 5rem;
   }
 
-  .salon-hero {
-    position: relative;
+  /* Hero */
+  .editorial-hero {
     display: grid;
-    grid-template-columns: 1.2fr 360px;
-    gap: 1.4rem;
-    min-height: 78vh;
-    padding: 2rem;
-    color: #fff8f1;
-    background: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1600&q=80') center/cover;
+    grid-template-columns: 55% 1fr;
+    gap: 4rem;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 6rem;
   }
 
-  .salon-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(115deg, rgba(28, 18, 16, 0.82) 20%, rgba(28, 18, 16, 0.28) 68%, rgba(201, 156, 127, 0.28) 100%);
+  .hero-image-wrap {
+    overflow: hidden;
+    height: 80vh;
   }
 
-  .salon-copy,
-  .booking-note {
-    position: relative;
-    z-index: 1;
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 800ms var(--ease-out), transform 3s var(--ease-out);
+    transform: scale(1.05);
   }
 
-  .salon-copy {
-    display: grid;
-    align-content: end;
-    max-width: 640px;
+  .hero-image-wrap:hover .hero-image {
+    filter: grayscale(0%);
+    transform: scale(1);
   }
 
-  .salon-copy h1 {
-    margin: 1rem 0;
-    font-family: 'Newsreader', serif;
-    font-size: clamp(4rem, 9vw, 8rem);
-    line-height: 0.88;
-    letter-spacing: -0.06em;
-    font-weight: 600;
-  }
-
-  .salon-copy p,
-  .booking-note p,
-  .booking-note li {
-    color: rgba(255, 244, 233, 0.8);
-  }
-
-  .salon-actions {
+  .hero-text-block {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-    margin-top: 1.3rem;
-  }
-
-  .salon-actions .button.primary {
-    background: #f3dcca;
-    color: #28170f;
-  }
-
-  .salon-actions .button.secondary {
-    background: rgba(255, 248, 241, 0.14);
-    border-color: rgba(255, 248, 241, 0.2);
-  }
-
-  .booking-note {
-    align-self: end;
-    padding: 1.3rem;
-    border-radius: 28px;
-    backdrop-filter: blur(18px);
-    background: rgba(75, 48, 37, 0.46);
-    border: 1px solid rgba(255, 248, 241, 0.16);
-  }
-
-  .booking-note strong {
-    display: block;
-    margin-bottom: 0.7rem;
-    font-size: 1.1rem;
-  }
-
-  .booking-note ul {
-    padding-left: 1rem;
-    margin: 1rem 0 0;
-  }
-
-  .salon-story,
-  .salon-services,
-  .salon-gallery,
-  .salon-team,
-  .salon-booking {
-    padding: 1.8rem;
-    background: rgba(255, 250, 245, 0.85);
-  }
-
-  .salon-story {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    flex-direction: column;
     gap: 2rem;
   }
 
-  .salon-story h2,
-  .section-head h2,
-  .team-copy h2,
-  .salon-booking h2 {
-    margin: 1rem 0 0;
-    font-family: 'Newsreader', serif;
-    font-size: clamp(2.3rem, 5vw, 4.4rem);
-    line-height: 0.95;
+  .hero-details {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3rem;
   }
 
-  .salon-story p,
-  .service-grid p,
-  .team-copy p,
-  .salon-booking p {
-    color: #6e6158;
-    font-size: 1.02rem;
-  }
-
-  .service-grid,
-  .gallery-grid {
-    display: grid;
-    gap: 1rem;
-    margin-top: 1.5rem;
-  }
-
-  .service-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .service-grid article {
-    padding: 1.3rem;
-    border-radius: 24px;
-    background: linear-gradient(180deg, #f8efe4 0%, #f2e4d6 100%);
-  }
-
-  .service-grid strong {
-    display: block;
-    margin-bottom: 0.8rem;
+  .hero-details p {
     font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--color-muted);
+    max-width: 320px;
   }
 
-  .gallery-grid {
-    grid-template-columns: 1.2fr 0.8fr 0.8fr 1.1fr;
+  /* Manifesto */
+  .editorial-manifesto {
+    padding: 8rem 0;
+    border-bottom: 1px solid var(--color-border);
   }
 
-  .gallery-grid img {
+  .manifesto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .manifesto-body p {
+    font-size: 2rem;
+    line-height: 1.4;
+    font-family: var(--font-serif);
+    font-weight: 300;
+  }
+
+  /* Services */
+  .editorial-services {
+    padding: 8rem 0;
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    gap: 4rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .service-row {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--color-border);
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .service-row:first-child {
+    padding-top: 0;
+  }
+
+  .service-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .service-title {
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .service-desc {
+    font-size: 1.1rem;
+    color: var(--color-muted);
+    line-height: 1.6;
+  }
+
+  /* Gallery Asymmetric */
+  .editorial-gallery {
+    padding: 8rem 0;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .gallery-item {
+    overflow: hidden;
+  }
+
+  .gallery-item img {
     width: 100%;
-    height: 340px;
+    height: 100%;
     object-fit: cover;
-    border-radius: 28px;
+    filter: grayscale(100%);
+    transition: filter 600ms;
+  }
+  
+  .gallery-item:hover img {
+    filter: grayscale(0%);
   }
 
-  .salon-team {
+  .item-0 { grid-column: 1 / 7; height: 600px; }
+  .item-1 { grid-column: 8 / 13; height: 800px; margin-top: -100px; }
+  .item-2 { grid-column: 3 / 10; height: 500px; margin-top: 4rem; }
+
+  /* Booking */
+  .editorial-booking {
+    padding: 8rem 0 4rem;
+  }
+
+  .booking-grid {
     display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: 1.2rem;
-    align-items: stretch;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
   }
 
-  .portrait {
-    min-height: 440px;
-    border-radius: 34px;
-    background: linear-gradient(180deg, rgba(18, 11, 10, 0.15), rgba(18, 11, 10, 0.45)), url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1400&q=80') center/cover;
+  .booking-context {
+    position: sticky;
+    top: 8rem;
+    align-self: start;
   }
 
-  .team-copy {
-    display: grid;
-    align-content: center;
-    gap: 0.8rem;
+  .booking-context p {
+    margin-top: 2rem;
+    font-size: 1.25rem;
+    color: var(--color-muted);
+    line-height: 1.6;
+    max-width: 400px;
   }
 
-  .quote {
-    padding: 1.2rem;
-    border-left: 3px solid #b67d57;
-    background: #f6eadc;
-    border-radius: 0 22px 22px 0;
-    color: #4d3a31;
-    font-family: 'Newsreader', serif;
-    font-size: 1.45rem;
-    line-height: 1.15;
-  }
-
-  .salon-booking {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 1.4rem;
-  }
-
-  .booking-form {
-    display: grid;
-    gap: 1rem;
-    padding: 1.2rem;
-    background: #f6ecdf;
-    border-radius: 28px;
-  }
-
-  @media (max-width: 1080px) {
-    .salon-hero,
-    .salon-story,
-    .service-grid,
-    .salon-team,
-    .salon-booking,
-    .gallery-grid {
+  @media (max-width: 1024px) {
+    .editorial-hero {
       grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .hero-image-wrap {
+      height: 60vh;
+      order: 2;
+    }
+    .hero-text-block {
+      order: 1;
+    }
+    .manifesto-grid, .editorial-services, .booking-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .item-0, .item-1, .item-2 {
+      grid-column: 1 / -1;
+      height: 400px;
+      margin-top: 0;
+    }
+    .service-row {
+      grid-template-columns: 1fr;
+      gap: 1rem;
     }
   }
 
-  @media (max-width: 720px) {
-    .salon-hero,
-    .salon-story,
-    .salon-services,
-    .salon-gallery,
-    .salon-team,
-    .salon-booking {
-      padding: 1.2rem;
+  @media (max-width: 600px) {
+    .editorial-container {
+      padding: 8rem 1.5rem 3rem;
     }
-
-    .salon-copy h1 {
-      font-size: clamp(3.4rem, 22vw, 5.5rem);
+    .editorial-hero {
+      padding-bottom: 3rem;
+    }
+    .hero-image-wrap {
+      height: 40vh;
+    }
+    .manifesto-body p {
+      font-size: 1.5rem;
+    }
+    .editorial-manifesto, .editorial-services, .editorial-gallery, .editorial-booking {
+      padding: 4rem 0;
+    }
+    .item-0, .item-1, .item-2 {
+      height: 300px;
     }
   }
 </style>

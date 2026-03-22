@@ -3,445 +3,254 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const demos = [
   {
-    href: '/peluqueria',
-    kicker: 'Peluqueria',
-    title: 'Editorial, sofisticada y pensada para reservas.',
-    text: 'Una propuesta premium para salones que venden imagen, experiencia y confianza desde el primer vistazo.',
-    image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1200&q=80'
+    path: '/peluqueria',
+    number: '01',
+    title: 'Peluqueria',
+    subtitle: 'Editorial. Sofisticada.',
+    image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1600&q=80'
   },
   {
-    href: '/bar',
-    kicker: 'Bar',
-    title: 'Con atmosfera, ritmo y ganas de quedarse.',
-    text: 'Una demo para locales que viven de su ambiente, su carta y el deseo de reservar mesa antes de salir.',
-    image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=80'
+    path: '/bar',
+    number: '02',
+    title: 'Bar Fuego',
+    subtitle: 'Atmosfera. Noche.',
+    image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=80'
   },
   {
-    href: '/fisioterapia',
-    kicker: 'Fisioterapia',
-    title: 'Clara, serena y enfocada en generar confianza.',
-    text: 'Ideal para clinicas que necesitan transmitir profesionalidad, metodo y cercania sin verse frias.',
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80'
+    path: '/fisioterapia',
+    number: '03',
+    title: 'Clinica',
+    subtitle: 'Serena. Humana.',
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1600&q=80'
   }
 ];
+
+const defaultBg = "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80"; // Minimalist dark architecture
 ---
 
 <BaseLayout
-  title="Estudio Zarenillas | Portfolio para negocios locales"
-  description="Hub de portfolio con demos de webs para peluquerias, bares y clinicas de fisioterapia creadas con Astro."
+  title="Zarenillas | The Curated Exhibition"
+  description="Portfolio de demos para webs de alto impacto visual."
   path="/"
 >
-  <section class="hub-hero section-shell">
-    <div class="hero-copy">
-      <span class="eyebrow">Portfolio demostrativo para negocio local</span>
-      <h1>Webs con caracter para negocios que quieren verse tan bien como trabajan.</h1>
-      <p>
-        Estudio Zarenillas es un escaparate de estilos pensados para peluquerias, bares y clinicas.
-        La idea es simple: que un cliente pueda visualizar su futura web, inspirarse y entender que no hacemos
-        plantillas genericas, sino experiencias adaptadas a cada negocio.
-      </p>
-      <div class="hero-actions">
-        <a class="button primary" href="#demos">Ver demos</a>
-        <a class="button secondary" href="#contacto">Quiero una web similar</a>
-      </div>
-      <ul class="hero-points">
-        <li>Diseno enfocado a captar reservas y contactos</li>
-        <li>Estilos visuales muy distintos para perfiles de cliente diferentes</li>
-        <li>Base lista para crecer con formularios reales, CMS o SEO local</li>
-      </ul>
+  <div class="hub-exhibition">
+    <div class="background-reveals" aria-hidden="true">
+      <img src={defaultBg} alt="" id="bg-default" class="demo-bg is-active" loading="eager" />
+      {demos.map((demo, i) => (
+        <img src={demo.image} alt="" id={`bg-${i}`} class="demo-bg" loading="lazy" />
+      ))}
+      <div class="bg-overlay"></div>
     </div>
-    <div class="hero-panel">
-      <div class="hero-card large">
-        <span>Enfoque</span>
-        <strong>Diseno, desarrollo y conversion</strong>
-        <p>Mostramos no solo como se ve una web, sino como puede ayudar a vender mejor un servicio local.</p>
-      </div>
-      <div class="hero-grid">
-        <div class="hero-card">
-          <span>Tipos de cliente</span>
-          <strong>Negocios locales</strong>
-          <p>Peluquerias, bares, estudios, clinicas, gastronomia y servicios de proximidad.</p>
-        </div>
-        <div class="hero-card accent">
-          <span>Promesa</span>
-          <strong>Inspiracion util</strong>
-          <p>Tu cliente no ve solo una muestra: ve posibilidades concretas para su marca.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section class="section-shell statement">
-    <div>
-      <span class="eyebrow">Que transmite el hub</span>
-      <h2>Un mismo estudio, tres formas radicalmente distintas de contar un negocio.</h2>
-    </div>
-    <div class="statement-grid">
-      <article>
-        <strong>Captacion</strong>
-        <p>Mensajes claros, CTAs visibles, formularios y estructura pensada para convertir visitas en conversaciones.</p>
-      </article>
-      <article>
-        <strong>Identidad</strong>
-        <p>Cada demo tiene tono, composicion, color y ritmo propios para reflejar la personalidad del sector.</p>
-      </article>
-      <article>
-        <strong>Escalabilidad</strong>
-        <p>La base puede evolucionar a reservas reales, integracion con WhatsApp, blog, CRM o SEO local avanzado.</p>
-      </article>
-    </div>
-  </section>
+    <div class="hub-content">
+      <header class="hub-intro animate-reveal">
+        <span class="text-eyebrow">Portfolio de Arquitectura Visual</span>
+        <h1 class="text-display italic">Curated <br/>Exhibition.</h1>
+        <p class="hub-desc">Explora tres aproximaciones de diseño asimétrico y vanguardista para negocios locales.</p>
+      </header>
 
-  <section class="demos" id="demos">
-    {demos.map((demo) => (
-      <article class="demo-card section-shell">
-        <img src={demo.image} alt={demo.kicker} loading="lazy" />
-        <div class="demo-card__copy">
-          <span class="eyebrow">{demo.kicker}</span>
-          <h3>{demo.title}</h3>
-          <p>{demo.text}</p>
-          <a class="button secondary" href={demo.href}>Abrir demo</a>
-        </div>
-      </article>
-    ))}
-  </section>
+      <nav class="hub-menu animate-reveal" style="animation-delay: 200ms;">
+        {demos.map((demo, i) => (
+          <a href={demo.path} class="menu-item" data-index={i}>
+            <span class="menu-number">{demo.number}</span>
+            <span class="text-huge menu-title">{demo.title}</span>
+            <span class="menu-subtitle">{demo.subtitle}</span>
+          </a>
+        ))}
+      </nav>
+      
 
-  <section class="section-shell process">
-    <div class="process-copy">
-      <span class="eyebrow">Proceso</span>
-      <h2>De la idea del negocio a una web que se puede ensenar y vender.</h2>
     </div>
-    <div class="process-steps">
-      <article>
-        <strong>01. Direccion</strong>
-        <p>Definimos tono, cliente ideal, servicios y la sensacion que la marca debe transmitir.</p>
-      </article>
-      <article>
-        <strong>02. Diseno</strong>
-        <p>Creamos una identidad visual a medida con jerarquia clara, imagen, textura y ritmo de lectura.</p>
-      </article>
-      <article>
-        <strong>03. Desarrollo</strong>
-        <p>Montamos una web rapida en Astro, lista para SEO, responsive y preparada para futuras integraciones.</p>
-      </article>
-      <article>
-        <strong>04. Lanzamiento</strong>
-        <p>Se despliega en Vercel y queda lista para compartir, vender y escalar con nuevas necesidades.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="section-shell contact-cta" id="contacto">
-    <div>
-      <span class="eyebrow">Contacto</span>
-      <h2>Si tu cliente te dice “quiero una web asi”, este portfolio ya esta haciendo su trabajo.</h2>
-      <p>
-        Puedes usar este hub como base comercial para presentar propuestas, adaptar estilos a cada negocio y cerrar
-        proyectos con una referencia visual mucho mas clara.
-      </p>
-    </div>
-    <form class="cta-form">
-      <div class="field-grid two">
-        <label>
-          Nombre
-          <input type="text" name="nombre" placeholder="Tu nombre" />
-        </label>
-        <label>
-          Negocio
-          <input type="text" name="negocio" placeholder="Tipo de negocio" />
-        </label>
-      </div>
-      <div class="field-grid two">
-        <label>
-          Email
-          <input type="email" name="email" placeholder="hola@negocio.com" />
-        </label>
-        <label>
-          Ciudad
-          <input type="text" name="ciudad" placeholder="Madrid, Valencia..." />
-        </label>
-      </div>
-      <label>
-        Que estilo te interesa
-        <textarea name="mensaje" placeholder="Me gusta la energia de la demo del bar, pero con un enfoque mas gastronomico..."></textarea>
-      </label>
-      <button class="button primary" type="submit">Solicitar propuesta</button>
-    </form>
-  </section>
+  </div>
 </BaseLayout>
 
-<style>
-  .hub-hero {
-    display: grid;
-    grid-template-columns: 1.2fr 0.9fr;
-    gap: 1.5rem;
-    padding: clamp(2rem, 4vw, 4rem) clamp(1.2rem, 4vw, 3rem) clamp(2.4rem, 5vw, 4.5rem);
-    background:
-      linear-gradient(135deg, rgba(255, 250, 245, 0.95), rgba(244, 231, 217, 0.78)),
-      radial-gradient(circle at top left, rgba(182, 84, 49, 0.22), transparent 32%);
-    border-bottom: 1px solid rgba(26, 23, 20, 0.08);
+<script>
+  const menu = document.querySelector('.hub-menu');
+  const items = document.querySelectorAll('.menu-item');
+  const bgs = document.querySelectorAll('.demo-bg');
+  const defaultBgImg = document.getElementById('bg-default');
+  
+  items.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      const idx = item.getAttribute('data-index');
+      bgs.forEach(bg => bg.classList.remove('is-active'));
+      const activeBg = document.getElementById(`bg-${idx}`);
+      if(activeBg) activeBg.classList.add('is-active');
+    });
+  });
+  
+  if (menu) {
+    menu.addEventListener('mouseleave', () => {
+      bgs.forEach(bg => bg.classList.remove('is-active'));
+      if(defaultBgImg) defaultBgImg.classList.add('is-active');
+    });
   }
+</script>
 
-  .hub-hero::before {
-    content: 'Curated demos';
-    position: absolute;
-    right: clamp(1.2rem, 4vw, 3rem);
-    top: 1.4rem;
-    font-family: 'Fraunces', serif;
-    font-size: clamp(1.4rem, 2vw, 2rem);
-    font-style: italic;
-    color: rgba(26, 23, 20, 0.16);
-    letter-spacing: -0.03em;
-  }
-
-  .hero-copy h1 {
-    margin: 1rem 0;
-    max-width: 13ch;
-    font-family: 'Fraunces', serif;
-    font-size: clamp(3.2rem, 7vw, 6.8rem);
-    line-height: 0.92;
-    letter-spacing: -0.05em;
-  }
-
-  .hero-copy p,
-  .hero-points {
-    max-width: 58ch;
-    color: var(--muted);
-    font-size: 1.04rem;
-  }
-
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.9rem;
-    margin: 2rem 0;
-  }
-
-  .hero-points {
-    display: grid;
-    gap: 0.7rem;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-  }
-
-  .hero-points li::before {
-    content: '•';
-    margin-right: 0.65rem;
-    color: var(--accent);
-  }
-
-  .hero-panel {
-    display: grid;
-    gap: 1rem;
-    min-height: 100%;
-    transform: translateY(1.5rem);
-  }
-
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-
-  .hero-card {
-    min-height: 230px;
-    padding: 1.5rem;
-    border-radius: 26px 26px 8px 26px;
-    background: rgba(27, 22, 19, 0.88);
-    color: #ffefe0;
-    display: grid;
-    align-content: end;
-    gap: 0.75rem;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: transform 280ms var(--ease-smooth), border-radius 280ms var(--ease-smooth);
-  }
-
-  .hero-card:hover {
-    transform: translateY(-6px);
-    border-radius: 8px 26px 26px 26px;
-  }
-
-  .hero-card.large {
-    background:
-      linear-gradient(180deg, rgba(22, 22, 22, 0.2), rgba(22, 22, 22, 0.88)),
-      url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1200&q=80') center/cover;
-  }
-
-  .hero-card.accent {
-    background: linear-gradient(160deg, #b65431 0%, #8a2f3e 100%);
-  }
-
-  .hero-card span {
-    opacity: 0.8;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    font-size: 0.72rem;
-  }
-
-  .hero-card strong {
-    font-family: 'Fraunces', serif;
-    font-size: 1.9rem;
-    line-height: 1;
-  }
-
-  .hero-card p {
-    margin: 0;
-    color: rgba(255, 239, 224, 0.84);
-  }
-
-  .statement,
-  .process,
-  .contact-cta {
-    padding: clamp(1.6rem, 4vw, 3rem);
-    background: rgba(255, 251, 246, 0.82);
-    border-top: 1px solid rgba(26, 23, 20, 0.08);
-  }
-
-  .statement h2,
-  .process h2,
-  .contact-cta h2 {
-    margin: 1rem 0 0;
-    max-width: 14ch;
-    font-family: 'Fraunces', serif;
-    font-size: clamp(2rem, 4vw, 3.6rem);
-    line-height: 0.98;
-  }
-
-  .statement-grid,
-  .process-steps {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-
-  .process-steps {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .statement-grid article,
-  .process-steps article {
-    padding: 1.5rem 1.3rem 1.4rem;
-    background: linear-gradient(180deg, rgba(255, 250, 245, 0.8), rgba(241, 231, 220, 0.88));
-    border-top: 2px solid rgba(26, 23, 20, 0.16);
-    min-height: 100%;
-  }
-
-  .statement-grid strong,
-  .process-steps strong {
-    display: block;
-    margin-bottom: 0.7rem;
-    font-size: 1.04rem;
-  }
-
-  .statement-grid p,
-  .process-steps p,
-  .contact-cta p {
-    margin: 0;
-    color: var(--muted);
-  }
-
-  .demos {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0;
-    border-top: 1px solid rgba(26, 23, 20, 0.08);
-    border-bottom: 1px solid rgba(26, 23, 20, 0.08);
-  }
-
-  .demo-card {
-    background: rgba(255, 250, 245, 0.62);
-    min-height: 640px;
-    border-right: 1px solid rgba(26, 23, 20, 0.08);
+<style is:global>
+  .hub-exhibition {
+    min-height: 100vh;
+    padding: 10rem 2.5rem 4rem;
     position: relative;
-    transition: background 280ms var(--ease-smooth);
+    display: grid;
+    grid-template-columns: 1fr;
   }
 
-  .demo-card:last-child {
-    border-right: 0;
+  .background-reveals {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: var(--color-bg);
   }
 
-  .demo-card:hover {
-    background: rgba(255, 250, 245, 0.92);
-  }
-
-  .demo-card img {
+  .demo-bg {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: 420px;
+    height: 100%;
     object-fit: cover;
-    transition: transform 500ms var(--ease-smooth), filter 500ms var(--ease-smooth);
+    opacity: 0;
+    transform: scale(1.05);
+    transition: opacity 800ms var(--ease-out), transform 4s var(--ease-out);
+    filter: grayscale(80%) contrast(1.2);
   }
 
-  .demo-card:hover img {
-    transform: scale(1.04);
-    filter: saturate(1.08) contrast(1.04);
+  .demo-bg.is-active {
+    opacity: 0.35;
+    transform: scale(1);
+    filter: grayscale(30%) contrast(1.1);
   }
 
-  .demo-card__copy {
-    padding: 1.5rem;
+  .bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(9, 9, 11, 0.5) 0%, rgba(9, 9, 11, 0.95) 100%);
   }
 
-  .demo-card__copy h3 {
-    margin: 1rem 0 0.75rem;
-    font-family: 'Fraunces', serif;
-    font-size: 2rem;
-    line-height: 1;
-  }
-
-  .demo-card__copy p {
-    color: var(--muted);
-    min-height: 5.2rem;
-  }
-
-  .demo-card__copy .button {
-    margin-top: 1rem;
-  }
-
-  .contact-cta {
+  .hub-content {
     display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 1.5rem;
-    align-items: start;
+    gap: 5rem;
+    max-width: 1800px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 2;
   }
 
-  .cta-form {
-    padding: 1.5rem;
-    background: linear-gradient(180deg, rgba(245, 238, 231, 0.92), rgba(238, 228, 217, 0.96));
-    border-top: 2px solid rgba(26, 23, 20, 0.16);
+  .hub-intro {
+    max-width: 600px;
+  }
+
+  .hub-intro h1 {
+    margin: 1.5rem 0 2rem;
+  }
+
+  .hub-desc {
+    font-size: 1.25rem;
+    color: var(--color-muted);
+    line-height: 1.6;
+    max-width: 440px;
+  }
+
+  .hub-menu {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .menu-item {
     display: grid;
-    gap: 1rem;
+    grid-template-columns: 100px 1fr 200px;
+    align-items: center;
+    padding: 3.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+    transition: padding 600ms var(--ease-expo), color 400ms var(--ease-out), border-color 600ms var(--ease-out);
+    color: var(--color-muted);
   }
 
-  @media (max-width: 1100px) {
-    .hub-hero,
-    .contact-cta,
-    .demos,
-    .statement-grid,
-    .process-steps {
-      grid-template-columns: 1fr;
-    }
+  .menu-item:first-child {
+    border-top: 1px solid var(--color-border);
+  }
 
-    .hero-grid {
-      grid-template-columns: 1fr;
+  .menu-number {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 300;
+    opacity: 0.6;
+  }
+
+  .menu-title {
+    transition: transform 600ms var(--ease-expo), color 400ms var(--ease-out), letter-spacing 600ms var(--ease-expo);
+    transform-origin: left center;
+  }
+
+  .menu-subtitle {
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 400ms var(--ease-out);
+  }
+
+  .menu-item:hover {
+    color: var(--color-text);
+    padding-left: 3rem;
+    padding-right: 3rem;
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .menu-item:hover .menu-title {
+    transform: translateX(30px);
+    letter-spacing: -0.04em;
+    color: #fff;
+  }
+
+  .menu-item:hover .menu-subtitle {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .hub-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 2rem;
+  }
+
+  @media (max-width: 1024px) {
+    .menu-item {
+      grid-template-columns: 60px 1fr;
+      gap: 1rem;
+      padding: 2.5rem 0;
+    }
+    .menu-subtitle {
+      display: none;
     }
   }
 
-  @media (max-width: 720px) {
-    .hub-hero,
-    .statement,
-    .process,
-    .contact-cta {
-      padding: 1.2rem;
+  @media (max-width: 600px) {
+    .hub-exhibition {
+      padding: 10rem 1.5rem 3rem;
     }
-
-    .hero-copy h1 {
-      max-width: 8ch;
-      font-size: clamp(2.8rem, 16vw, 4.8rem);
+    .hub-content {
+      gap: 3rem;
     }
-
-    .demo-card img {
-      height: 280px;
+    .menu-item {
+      padding: 2rem 0;
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+    .menu-number {
+      font-size: 1rem;
+    }
+    .menu-item:hover {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .menu-item:hover .menu-title {
+      transform: translateX(10px);
     }
   }
 </style>

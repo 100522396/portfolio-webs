@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import SpeedInsights from "@vercel/speed-insights/astro"
 
 interface Props {
   title: string;
@@ -9,15 +8,16 @@ interface Props {
 }
 
 const { title, description, path = '/' } = Astro.props;
-const canonical = new URL(path, Astro.site);
+const canonical = new URL(path, Astro.site || 'http://localhost');
 const isHub = path === '/';
-const pageClass = isHub ? 'page-hub' : 'page-demo';
+const pathName = path === '/' ? 'hub' : path.replace('/', '');
+const pageClass = `page-${pathName}`;
 
 const navLinks = [
-  { href: '/', label: 'Hub' },
-  { href: '/peluqueria', label: 'Peluqueria' },
-  { href: '/bar', label: 'Bar' },
-  { href: '/fisioterapia', label: 'Fisioterapia' }
+  { href: '/', label: 'Index' },
+  { href: '/peluqueria', label: '01. Peluqueria' },
+  { href: '/bar', label: '02. Bar' },
+  { href: '/fisioterapia', label: '03. Clinica' }
 ];
 ---
 
@@ -29,34 +29,29 @@ const navLinks = [
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
-    <link rel="canonical" href={canonical} />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
-    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href={canonical.toString()} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700&family=Outfit:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Manrope:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
   </head>
   <body class={pageClass}>
-    <header class:list={["global-header", isHub ? 'is-hub' : 'is-demo']}>
-      <a class="brand" href="/">
-        <span class="brand-mark">EB</span>
-        <span>
-          <strong>Estudio Zarenillas</strong>
-          <small>Portfolio de demos para negocio local</small>
-        </span>
-      </a>
-      <nav class="global-nav" aria-label="Principal">
-        {navLinks.map((link) => (
-          <a href={link.href} class:list={{ active: path === link.href }}>
-            {link.label}
-          </a>
-        ))}
-      </nav>
+    <header class="exhibition-header">
+      <div class="header-inner">
+        <a class="brand-avant" href="/">
+          <span class="brand-dot"></span>
+          Zarenillas
+        </a>
+        <nav class="pill-nav" aria-label="Navegacion">
+          {navLinks.map((link) => (
+            <a href={link.href} class:list={{ active: path === link.href }}>
+              {link.label}
+            </a>
+          ))}
+        </nav>
+      </div>
     </header>
-    <main>
+    <div class="grain-overlay"></div>
+    <main class="smooth-content">
       <slot />
     </main>
   </body>

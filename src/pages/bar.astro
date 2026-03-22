@@ -2,350 +2,307 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const menu = [
-  ['Negroni ahumado', 'Ginebra, bitter rojo, vermut y piel de naranja al humo.'],
-  ['Tonica de romero', 'Version fresca con ginebra seca, citricos y hierba recien prensada.'],
-  ['Croqueta de costilla', 'Bocado cremoso para compartir entre primera ronda y segunda.'],
-  ['Brioche de calamar', 'Mantequilla, lima y mayo picante con pan tostado al momento.']
+  ['01. Humo & Especias', 'Mezcal artesanal, licor de chile ancho, sirope de agave tostado y bitter de cacao.'],
+  ['02. Velvet Martini', 'Vodka infusionado en vainilla, vermut seco y un toque de aceite de oliva.'],
+  ['03. Noche Eterna', 'Ginebra botánica, licor de flor de saúco, pepino fresco y tónica premium.']
 ];
 
 const gallery = [
   'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
-  'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80',
   'https://images.unsplash.com/photo-1516997121675-4c2d1684aa3e?auto=format&fit=crop&w=1200&q=80'
 ];
 ---
 
 <BaseLayout
-  title="Casa Fuego | Demo de bar"
-  description="Demo de una web de bar con una identidad visual inmersiva, nocturna y enfocada a reservas."
+  title="Fuego | Underground Cinematic"
+  description="Demo de bar con estética nocturna y cinemática."
   path="/bar"
 >
-  <section class="bar-hero section-shell">
-    <div class="bar-hero__copy">
-      <span class="eyebrow">Demo bar · atmosfera urbana</span>
-      <h1>Casa Fuego</h1>
-      <p>
-        Un bar de tarde y noche con identidad intensa, carta corta, cocteleria cuidada y agenda de sesiones. La web
-        prioriza impacto, ritmo visual y reserva rapida para grupos y mesas altas.
-      </p>
-      <div class="bar-actions">
-        <a class="button primary" href="#reservar">Reservar mesa</a>
-        <a class="button secondary" href="#carta">Explorar carta</a>
+  <div class="cinematic-container">
+    
+    <section class="cinematic-hero animate-reveal">
+      <div class="hero-bg">
+        <video autoplay loop muted playsinline class="hero-video" style="display:none;">
+          <!-- Fallback to image -->
+        </video>
+        <img src="https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?auto=format&fit=crop&w=1600&q=80" alt="Bar Atmosphere" class="hero-image" />
+        <div class="hero-vignette"></div>
       </div>
-    </div>
-    <div class="bar-hero__stack">
-      <article>
-        <span>Hoy</span>
-        <strong>Sesion vinilos 22:30</strong>
-        <p>Afro house, funk y cocteles de temporada hasta la 1:30.</p>
-      </article>
-      <article>
-        <span>Ambiente</span>
-        <strong>Luz baja, cocina viva</strong>
-        <p>Barra abierta, mesas compartidas y una energia pensada para alargar la noche.</p>
-      </article>
-    </div>
-  </section>
+      
+      <div class="hero-content">
+        <span class="text-eyebrow neon-glow">Vol. 1 — La Noche</span>
+        <h1 class="text-huge">Fuego.</h1>
+        <p class="hero-desc">Un refugio subterráneo donde el tiempo se detiene. Mixología experimental, vinilos y penumbra.</p>
+        <a href="#reservar" class="btn-avant btn-neon">Reservar Mesa</a>
+      </div>
+    </section>
 
-  <section class="bar-intro section-shell">
-    <div>
-      <span class="eyebrow">Concepto</span>
-      <h2>Una web que vende ambiente incluso antes de llegar al local.</h2>
-    </div>
-    <p>
-      La demo del bar apuesta por un lenguaje visual mas dramatico: fondo oscuro, tipografia ancha, bloques superpuestos
-      y acentos calidos para sugerir neon, calor y movimiento. Funciona bien para bares, wine bars o espacios hibridos.
-    </p>
-  </section>
+    <section class="cinematic-menu">
+      <div class="menu-intro">
+        <h2 class="text-display italic">Líquido<br/>& Humo.</h2>
+      </div>
+      <div class="menu-items">
+        {menu.map(([title, desc]) => (
+          <article class="menu-card">
+            <h3>{title}</h3>
+            <p>{desc}</p>
+          </article>
+        ))}
+      </div>
+    </section>
 
-  <section class="bar-menu section-shell" id="carta">
-    <div class="section-head">
-      <span class="eyebrow">Carta destacada</span>
-      <h2>Bocados y tragos que piden otra ronda</h2>
-    </div>
-    <div class="menu-grid">
-      {menu.map(([title, text]) => (
-        <article>
-          <strong>{title}</strong>
-          <p>{text}</p>
-        </article>
+    <section class="cinematic-gallery">
+      {gallery.map(img => (
+        <div class="gallery-frame">
+          <img src={img} alt="Momentos" loading="lazy" />
+        </div>
       ))}
-    </div>
-  </section>
+    </section>
 
-  <section class="bar-gallery section-shell">
-    <div class="gallery-copy">
-      <span class="eyebrow">Galeria</span>
-      <h2>El local se entiende por su luz, su barra y sus momentos.</h2>
-      <p>
-        Esta seccion esta pensada para que un local pueda vender experiencia: fotos de ambiente, producto, gente y detalle.
-      </p>
-    </div>
-    <div class="gallery-strip">
-      {gallery.map((image) => <img src={image} alt="Ambiente del bar" loading="lazy" />)}
-    </div>
-  </section>
-
-  <section class="bar-events section-shell">
-    <article>
-      <span>Jueves</span>
-      <strong>Afterwork y tapas largas</strong>
-      <p>Reservas de grupos pequenos, musica suave y carta especial para compartir.</p>
-    </article>
-    <article>
-      <span>Viernes</span>
-      <strong>Guest bartender</strong>
-      <p>Invitado mensual con carta exclusiva y dos pases de cocteleria de autor.</p>
-    </article>
-    <article>
-      <span>Sabado</span>
-      <strong>Noche de cabina abierta</strong>
-      <p>Sesiones rotativas y reservas de barra con consumo minimo.</p>
-    </article>
-  </section>
-
-  <section class="bar-booking section-shell" id="reservar">
-    <div>
-      <span class="eyebrow">Reserva</span>
-      <h2>Confirma tu mesa</h2>
-      <p>Formulario demostrativo para gestionar numero de personas, franja horaria y celebraciones.</p>
-    </div>
-    <form class="bar-form">
-      <div class="field-grid two">
-        <label>
-          Nombre
-          <input type="text" name="nombre" placeholder="Quien reserva" />
-        </label>
-        <label>
-          Telefono
-          <input type="tel" name="telefono" placeholder="600 123 456" />
-        </label>
+    <section class="cinematic-booking" id="reservar">
+      <div class="booking-glass">
+        <h2 class="text-display">Asegura<br/>Tu Sitio.</h2>
+        <form class="minimal-form dark-form">
+          <div class="field-group">
+            <input type="text" name="nombre" placeholder="Responsable de la reserva" />
+          </div>
+          <div class="field-group">
+            <select name="personas">
+              <option>2 Personas</option>
+              <option>4 Personas</option>
+              <option>Grupo (+6)</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <input type="time" name="hora" />
+          </div>
+          <button class="btn-avant btn-neon" type="submit">Confirmar</button>
+        </form>
       </div>
-      <div class="field-grid two">
-        <label>
-          Personas
-          <select name="personas">
-            <option>2 personas</option>
-            <option>4 personas</option>
-            <option>6 personas</option>
-            <option>8+ personas</option>
-          </select>
-        </label>
-        <label>
-          Hora preferida
-          <input type="time" name="hora" />
-        </label>
-      </div>
-      <label>
-        Comentarios
-        <textarea name="mensaje" placeholder="Cumpleanos, zona de barra, preferencia por interior..."></textarea>
-      </label>
-      <button class="button primary" type="submit">Solicitar reserva</button>
-    </form>
-  </section>
+    </section>
+  </div>
 </BaseLayout>
 
 <style>
-  :global(body) {
-    background:
-      radial-gradient(circle at top, rgba(255, 127, 45, 0.12), transparent 30%),
-      linear-gradient(180deg, #0f1015 0%, #19141a 45%, #23161b 100%);
-    color: #fff6ed;
+  .cinematic-container {
+    width: 100%;
+    color: var(--color-text);
   }
 
-  .bar-hero,
-  .bar-intro,
-  .bar-menu,
-  .bar-gallery,
-  .bar-events,
-  .bar-booking {
-    background: rgba(16, 16, 22, 0.7);
-    border-color: rgba(255, 255, 255, 0.08);
-  }
-
-  .bar-hero {
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 1.4rem;
-    padding: 2rem;
-    min-height: 80vh;
-    background:
-      linear-gradient(110deg, rgba(10, 10, 14, 0.9), rgba(10, 10, 14, 0.42)),
-      url('https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?auto=format&fit=crop&w=1600&q=80') center/cover;
-  }
-
-  .bar-hero__copy {
-    align-self: end;
-    max-width: 620px;
-  }
-
-  .bar-hero__copy h1,
-  .bar-intro h2,
-  .section-head h2,
-  .gallery-copy h2,
-  .bar-booking h2 {
-    margin: 1rem 0;
-    font-family: 'Outfit', sans-serif;
-    font-size: clamp(3rem, 7vw, 6.2rem);
-    line-height: 0.92;
-    text-transform: uppercase;
-    letter-spacing: -0.05em;
-  }
-
-  .bar-hero__copy p,
-  .bar-intro p,
-  .menu-grid p,
-  .gallery-copy p,
-  .bar-events p,
-  .bar-booking p {
-    color: rgba(255, 239, 225, 0.72);
-  }
-
-  .bar-actions {
+  /* Hero */
+  .cinematic-hero {
+    position: relative;
+    min-height: 100vh;
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.9rem;
-    margin-top: 1.4rem;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 6rem 4rem;
+    overflow: hidden;
   }
 
-  .bar-actions .button.primary,
-  .bar-form .button.primary {
-    background: linear-gradient(135deg, #ff7b39 0%, #ffb24b 100%);
-    color: #1d120e;
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
   }
 
-  .bar-actions .button.secondary {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.12);
-    color: #fff6ed;
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.2) brightness(0.6);
   }
 
-  .bar-hero__stack {
+  .hero-vignette {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(9, 9, 11, 0.5) 40%, rgba(9, 9, 11, 0.95) 100%),
+                radial-gradient(circle at 60% 40%, transparent 20%, rgba(9, 9, 11, 0.8) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    max-width: 800px;
+  }
+
+  .neon-glow {
+    color: var(--color-accent);
+    text-shadow: 0 0 10px rgba(255, 106, 61, 0.5);
+  }
+
+  .hero-content h1 {
+    color: #fff;
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+  }
+
+  .hero-desc {
+    font-size: 1.35rem;
+    max-width: 600px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  }
+
+  .btn-neon {
+    background: var(--color-accent);
+    color: #000;
+    box-shadow: 0 0 20px rgba(255, 106, 61, 0.4);
+  }
+
+  .btn-neon:hover {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+  }
+
+  /* Menu */
+  .cinematic-menu {
+    padding: 10rem 2.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
     display: grid;
-    gap: 1rem;
-    align-self: end;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
   }
 
-  .bar-hero__stack article,
-  .bar-events article,
-  .menu-grid article {
-    padding: 1.3rem;
-    border-radius: 26px;
-    background: linear-gradient(180deg, rgba(255, 124, 58, 0.14), rgba(255, 255, 255, 0.04));
-    border: 1px solid rgba(255, 255, 255, 0.08);
+  .menu-intro {
+    position: sticky;
+    top: 10rem;
+    align-self: start;
   }
 
-  .bar-hero__stack span,
-  .bar-events span {
-    color: #ffb98d;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    font-size: 0.74rem;
+  .menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
 
-  .bar-hero__stack strong,
-  .bar-events strong,
-  .menu-grid strong {
-    display: block;
-    margin: 0.65rem 0;
-    font-size: 1.26rem;
+  .menu-card {
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    transition: transform 400ms var(--ease-out), border-color 400ms var(--ease-out);
   }
 
-  .bar-intro,
-  .bar-menu,
-  .bar-gallery,
-  .bar-booking {
-    padding: 1.8rem;
+  .menu-card:hover {
+    transform: translateX(10px);
+    border-color: rgba(255, 106, 61, 0.3);
   }
 
-  .bar-intro {
+  .menu-card h3 {
+    font-size: 1.5rem;
+    font-family: var(--font-mono);
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+
+  .menu-card p {
+    color: var(--color-muted);
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  /* Gallery */
+  .cinematic-gallery {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    align-items: start;
+    gap: 2rem;
+    padding: 0 2.5rem 10rem;
+    max-width: 1400px;
+    margin: auto;
   }
 
-  .menu-grid,
-  .bar-events {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1rem;
-    margin-top: 1.5rem;
-  }
-
-  .bar-gallery {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: 1.3rem;
-    align-items: center;
-  }
-
-  .gallery-strip {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.9rem;
-  }
-
-  .gallery-strip img {
+  .gallery-frame img {
+    height: 600px;
     width: 100%;
-    height: 420px;
     object-fit: cover;
+    border-radius: 20px;
+    filter: brightness(0.7);
+    transition: filter 400ms;
+  }
+
+  .gallery-frame:hover img {
+    filter: brightness(1.1);
+  }
+
+  /* Booking */
+  .cinematic-booking {
+    padding: 10rem 2.5rem;
+    background: url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=80') center/cover;
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .cinematic-booking::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(9, 9, 11, 0.85);
+  }
+
+  .booking-glass {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(30px);
+    padding: 5rem;
     border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
   }
 
-  .bar-booking {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 1.4rem;
+  .booking-glass h2 {
+    margin-bottom: 3rem;
   }
 
-  .bar-form {
-    display: grid;
-    gap: 1rem;
-    padding: 1.2rem;
-    border-radius: 28px;
-    background: rgba(255, 255, 255, 0.04);
+  .dark-form input, .dark-form select {
+    text-align: center;
   }
 
-  .bar-form :global(input),
-  .bar-form :global(select),
-  .bar-form :global(textarea) {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.08);
-    color: #fff6ed;
-  }
-
-  @media (max-width: 1080px) {
-    .bar-hero,
-    .bar-intro,
-    .bar-gallery,
-    .bar-booking,
-    .menu-grid,
-    .bar-events,
-    .gallery-strip {
+  @media (max-width: 900px) {
+    .cinematic-menu {
       grid-template-columns: 1fr;
     }
+    .cinematic-gallery {
+      grid-template-columns: 1fr;
+    }
+    .booking-glass {
+      padding: 3rem 2rem;
+    }
   }
 
-  @media (max-width: 720px) {
-    .bar-hero,
-    .bar-intro,
-    .bar-menu,
-    .bar-gallery,
-    .bar-booking {
-      padding: 1.2rem;
+  @media (max-width: 600px) {
+    .cinematic-hero {
+      padding: 8rem 1.5rem 4rem;
     }
-
-    .bar-hero__copy h1,
-    .bar-intro h2,
-    .section-head h2,
-    .gallery-copy h2,
-    .bar-booking h2 {
-      font-size: clamp(2.8rem, 16vw, 4.8rem);
+    .cinematic-menu {
+      padding: 5rem 1.5rem;
     }
-
-    .gallery-strip img {
-      height: 300px;
+    .menu-card {
+      padding: 2rem 1.5rem;
+    }
+    .cinematic-gallery {
+      padding: 0 1.5rem 5rem;
+    }
+    .gallery-frame img {
+      height: 400px;
+    }
+    .cinematic-booking {
+      padding: 5rem 1.5rem;
+    }
+    .booking-glass {
+      padding: 2.5rem 1.5rem;
     }
   }
 </style>

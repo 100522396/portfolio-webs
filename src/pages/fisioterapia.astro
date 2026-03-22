@@ -2,376 +2,360 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const treatments = [
-  ['Dolor lumbar y cervical', 'Valoracion funcional, terapia manual y plan de movilidad en casa.'],
-  ['Recuperacion deportiva', 'Prevencion, readaptacion y trabajo de fuerza orientado al regreso seguro.'],
-  ['Suelo pelvico y postparto', 'Acompanamiento respetuoso con sesiones graduales y seguimiento.'],
-  ['ATM y cefaleas tensionales', 'Abordaje combinado para descargar, reeducar y reducir recurrencias.']
-];
-
-const reviews = [
-  ['“Explican todo con claridad y sales con sensacion real de mejora.”', 'Lucia M.'],
-  ['“La web transmite exactamente lo que luego encuentras en consulta: calma y profesionalidad.”', 'Diego P.'],
-  ['“Perfecta para una clinica que quiere verse cercana y moderna.”', 'Marta G.']
+  ['01', 'Movilidad', 'Terapias manuales orientadas a recuperar la amplitud de movimiento articular y aliviar tensiones estructurales profundas.'],
+  ['02', 'Readaptación', 'Protocolos biomecánicos específicos para devolver al sistema musculoesquelético su fuerza natural tras una lesión.'],
+  ['03', 'Rendimiento', 'Análisis cinemático y ajuste de cargas para optimizar la eficiencia motriz en atletas y minimizar riesgos.']
 ];
 ---
 
 <BaseLayout
-  title="Clinica Serena | Demo de fisioterapia"
-  description="Demo de una web de clinica de fisioterapia con tono profesional, cercano y orientado a solicitud de cita."
+  title="Clínica Serena | Architectural Anatomy"
+  description="Demo de clínica de fisioterapia con diseño estructurado y clínico."
   path="/fisioterapia"
 >
-  <section class="physio-hero section-shell">
-    <div class="hero-text">
-      <span class="eyebrow">Demo fisioterapia · confianza y claridad</span>
-      <h1>Moverse mejor tambien se comunica mejor.</h1>
-      <p>
-        Clinica Serena propone una presencia digital limpia y humana para centros de fisioterapia que necesitan generar
-        confianza, explicar sus tratamientos y facilitar la primera cita sin friccion.
-      </p>
-      <div class="hero-actions">
-        <a class="button primary" href="#cita">Solicitar cita</a>
-        <a class="button secondary" href="#tratamientos">Ver tratamientos</a>
-      </div>
-    </div>
-    <div class="hero-card">
-      <strong>Primera valoracion de 50 min</strong>
-      <p>Historia clinica, exploracion funcional y propuesta de tratamiento adaptada a objetivos reales.</p>
-      <dl>
-        <div>
-          <dt>Horario</dt>
-          <dd>Lun - Vie · 9:00 - 20:30</dd>
+  <div class="anatomy-container">
+    
+    <div class="blueprint-grid">
+      
+      <!-- HERO -->
+      <section class="blueprint-hero animate-reveal">
+        <div class="hero-data">
+          <div class="data-block">
+            <span class="data-label">Instalación</span>
+            <span class="data-value">CS-01 // Valencia</span>
+          </div>
+          <div class="data-block">
+            <span class="data-label">Especialidad</span>
+            <span class="data-value">Ingeniería Corporal</span>
+          </div>
+          <div class="hero-title-box">
+            <h1 class="text-blueprint">Sistemas<br/>Mecánico-<br/>Humanos.</h1>
+            <p class="hero-desc">La fisioterapia entendida como arquitectura clínica. Diagnosticamos, calibramos y optimizamos la estructura de soporte para un movimiento perfecto.</p>
+            <a href="#analisis" class="btn-avant btn-blueprint">Solicitar Análisis</a>
+          </div>
         </div>
-        <div>
-          <dt>Ubicacion</dt>
-          <dd>Avenida del Puerto, 28 · Valencia</dd>
+        <div class="hero-visual">
+          <div class="precision-frame">
+            <div class="crosshair top-left"></div>
+            <div class="crosshair top-right"></div>
+            <div class="crosshair bottom-left"></div>
+            <div class="crosshair bottom-right"></div>
+            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80" alt="Diagnóstico Clínico" loading="eager" />
+          </div>
         </div>
-        <div>
-          <dt>Especialidad</dt>
-          <dd>Dolor persistente, deporte y salud femenina</dd>
+      </section>
+
+      <!-- SERVICES / TREATMENTS -->
+      <section class="blueprint-treatments">
+        <div class="section-badge">
+          <span class="text-eyebrow">Protocolos de Intervención</span>
         </div>
-      </dl>
-    </div>
-  </section>
+        <div class="treatments-table">
+          {treatments.map(([num, title, desc]) => (
+            <article class="table-row">
+              <div class="row-num">{num}</div>
+              <h3 class="row-title">{title}</h3>
+              <p class="row-desc">{desc}</p>
+            </article>
+          ))}
+        </div>
+      </section>
 
-  <section class="physio-values section-shell">
-    <article>
-      <span>Metodo</span>
-      <strong>Evaluamos antes de tratar</strong>
-      <p>La web ayuda a diferenciar una clinica que trabaja con criterio, seguimiento y educacion del paciente.</p>
-    </article>
-    <article>
-      <span>Confianza</span>
-      <strong>Diseno limpio y cercano</strong>
-      <p>Colores suaves, bloques aireados y copy claro para inspirar calma desde el primer scroll.</p>
-    </article>
-    <article>
-      <span>Conversion</span>
-      <strong>Cita sin friccion</strong>
-      <p>La llamada a la accion se integra de forma natural y hace facil dejar datos y motivo de consulta.</p>
-    </article>
-  </section>
+      <!-- BOOKING -->
+      <section class="blueprint-booking" id="analisis">
+        <div class="booking-grid">
+          <div class="booking-blueprint">
+            <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&w=1200&q=80" alt="Estructura y alineación" loading="lazy" />
+          </div>
+          <div class="booking-form-area">
+            <h2 class="text-blueprint">Inicia<br/>Secuencia.</h2>
+            <form class="minimal-form blueprint-form">
+              <div class="field-row">
+                <input type="text" name="paciente" placeholder="ID Paciente / Nombre" />
+              </div>
+              <div class="field-row">
+                <select name="objetivo">
+                  <option>Seleccionar Protocolo</option>
+                  <option>Evaluación Estructural</option>
+                  <option>Intervención de Dolor</option>
+                  <option>Ajuste de Rendimiento</option>
+                </select>
+              </div>
+              <div class="field-row">
+                <input type="date" name="fecha" />
+              </div>
+              <button class="btn-avant btn-blueprint" type="submit">Procesar Clínica</button>
+            </form>
+          </div>
+        </div>
+      </section>
 
-  <section class="physio-treatments section-shell" id="tratamientos">
-    <div class="section-head">
-      <span class="eyebrow">Tratamientos</span>
-      <h2>Servicios presentados con claridad clinica y lenguaje comprensible.</h2>
     </div>
-    <div class="treatment-grid">
-      {treatments.map(([title, text]) => (
-        <article>
-          <strong>{title}</strong>
-          <p>{text}</p>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="physio-method section-shell">
-    <div class="method-image"></div>
-    <div class="method-copy">
-      <span class="eyebrow">Como trabaja la clinica</span>
-      <h2>Escuchar, valorar, tratar y acompanar.</h2>
-      <p>
-        Esta demo esta pensada para transmitir rigor sin resultar distante. Funciona especialmente bien para centros
-        que quieren combinar terapia manual, ejercicio terapeutico y seguimiento continuo.
-      </p>
-      <ul>
-        <li>Primera valoracion con objetivos medibles</li>
-        <li>Tratamiento adaptado a la causa y no solo al sintoma</li>
-        <li>Explicaciones claras para que el paciente entienda su proceso</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="physio-reviews section-shell">
-    {reviews.map(([quote, author]) => (
-      <article>
-        <p>{quote}</p>
-        <strong>{author}</strong>
-      </article>
-    ))}
-  </section>
-
-  <section class="physio-booking section-shell" id="cita">
-    <div>
-      <span class="eyebrow">Solicitud de cita</span>
-      <h2>Cuéntanos qué te pasa y te llamamos.</h2>
-      <p>Formulario demostrativo pensado para primeros contactos y seguimiento administrativo rapido.</p>
-    </div>
-    <form class="physio-form">
-      <div class="field-grid two">
-        <label>
-          Nombre y apellidos
-          <input type="text" name="nombre" placeholder="Tu nombre" />
-        </label>
-        <label>
-          Telefono
-          <input type="tel" name="telefono" placeholder="600 123 456" />
-        </label>
-      </div>
-      <div class="field-grid two">
-        <label>
-          Motivo de consulta
-          <select name="motivo">
-            <option>Dolor lumbar</option>
-            <option>Lesion deportiva</option>
-            <option>Postparto / suelo pelvico</option>
-            <option>ATM / cefalea</option>
-          </select>
-        </label>
-        <label>
-          Disponibilidad
-          <input type="text" name="disponibilidad" placeholder="Mananas o tardes" />
-        </label>
-      </div>
-      <label>
-        Describe brevemente tu caso
-        <textarea name="mensaje" placeholder="Llevo dos meses con molestia al correr, mejora con reposo pero vuelve al retomar..." />
-      </label>
-      <button class="button primary" type="submit">Solicitar cita</button>
-    </form>
-  </section>
+  </div>
 </BaseLayout>
 
 <style>
-  :global(body) {
-    background:
-      radial-gradient(circle at top right, rgba(86, 159, 160, 0.18), transparent 22%),
-      linear-gradient(180deg, #eef6f3 0%, #ddebe7 100%);
+  .anatomy-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 10rem 2.5rem 4rem;
   }
 
-  .physio-hero,
-  .physio-values,
-  .physio-treatments,
-  .physio-method,
-  .physio-reviews,
-  .physio-booking {
-    background: rgba(249, 253, 251, 0.84);
-  }
-
-  .physio-hero {
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 1.4rem;
-    padding: 2rem;
-    min-height: 72vh;
-    background:
-      linear-gradient(120deg, rgba(248, 252, 250, 0.96), rgba(232, 244, 241, 0.85)),
-      radial-gradient(circle at top right, rgba(86, 159, 160, 0.18), transparent 36%);
-  }
-
-  .hero-text {
-    display: grid;
-    align-content: center;
-  }
-
-  .hero-text h1,
-  .section-head h2,
-  .method-copy h2,
-  .physio-booking h2 {
-    margin: 1rem 0;
-    max-width: 11ch;
-    font-family: 'Sora', sans-serif;
-    font-size: clamp(2.8rem, 6vw, 5.5rem);
-    line-height: 0.96;
-    letter-spacing: -0.06em;
-  }
-
-  .hero-text p,
-  .hero-card p,
-  .physio-values p,
-  .treatment-grid p,
-  .method-copy p,
-  .method-copy li,
-  .physio-booking p {
-    color: #54706f;
-  }
-
-  .hero-actions {
+  .blueprint-grid {
+    border: 1px solid var(--color-border);
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.9rem;
-    margin-top: 1.4rem;
+    flex-direction: column;
   }
 
-  .hero-actions .button.primary,
-  .physio-form .button.primary {
-    background: linear-gradient(135deg, #3a8d8f 0%, #79c2ad 100%);
-  }
-
-  .hero-card {
-    align-self: center;
-    padding: 1.5rem;
-    border-radius: 32px;
-    background: linear-gradient(180deg, #ffffff 0%, #eef8f5 100%);
-    border: 1px solid rgba(58, 141, 143, 0.14);
-  }
-
-  .hero-card strong {
-    display: block;
-    margin-bottom: 0.8rem;
-    font-size: 1.3rem;
-  }
-
-  .hero-card dl {
+  /* Hero */
+  .blueprint-hero {
     display: grid;
-    gap: 1rem;
-    margin: 1.4rem 0 0;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--color-border);
   }
 
-  .hero-card dt {
-    margin-bottom: 0.25rem;
-    color: #2e5456;
-    font-size: 0.78rem;
-    letter-spacing: 0.12em;
+  .hero-data {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--color-border);
+  }
+
+  .data-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2.5rem;
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-mono);
     text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
   }
 
-  .hero-card dd {
-    margin: 0;
+  .data-label { color: var(--color-muted); }
+  .data-value { color: var(--color-accent); font-weight: 600; }
+
+  .hero-title-box {
+    padding: 6rem 4rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3rem;
   }
 
-  .physio-values,
-  .physio-treatments,
-  .physio-method,
-  .physio-booking {
-    padding: 1.8rem;
+  .hero-desc {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--color-muted);
+    max-width: 400px;
   }
 
-  .physio-values,
-  .treatment-grid,
-  .physio-reviews {
+  .btn-blueprint {
+    align-self: flex-start;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+  }
+
+  .btn-blueprint:hover {
+    background: var(--color-text);
+    color: var(--color-bg);
+    border-color: var(--color-text);
+  }
+
+  .hero-visual {
+    padding: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(0,0,0,0.03) 40px),
+                repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(0,0,0,0.03) 40px);
+  }
+
+  .precision-frame {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    aspect-ratio: 3/4;
+    border: 1px solid var(--color-accent);
+    padding: 1rem;
+    background: rgba(0,0,0,0.02);
+  }
+
+  .precision-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 600ms var(--ease-out);
+  }
+
+  .precision-frame:hover img {
+    transform: scale(1.02);
+  }
+
+  .crosshair {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 1px solid var(--color-accent);
+  }
+  .top-left { top: -6px; left: -6px; border-right: none; border-bottom: none; }
+  .top-right { top: -6px; right: -6px; border-left: none; border-bottom: none; }
+  .bottom-left { bottom: -6px; left: -6px; border-right: none; border-top: none; }
+  .bottom-right { bottom: -6px; right: -6px; border-left: none; border-top: none; }
+
+  /* Treatments */
+  .blueprint-treatments {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .section-badge {
+    padding: 1.5rem 2.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .treatments-table {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .table-row {
     display: grid;
-    gap: 1rem;
+    grid-template-columns: 80px 300px 1fr;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+    padding: 3rem 2.5rem;
+    transition: background 400ms;
   }
 
-  .physio-values {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .table-row:last-child {
+    border-bottom: none;
   }
 
-  .physio-values article,
-  .treatment-grid article,
-  .physio-reviews article {
-    padding: 1.3rem;
-    border-radius: 24px;
-    background: linear-gradient(180deg, #ffffff 0%, #edf7f4 100%);
-    border: 1px solid rgba(58, 141, 143, 0.1);
+  .table-row:hover {
+    background: rgba(0, 0, 0, 0.02);
   }
 
-  .physio-values span {
-    color: #4a7a7b;
+  .row-num {
+    font-family: var(--font-mono);
+    color: var(--color-accent);
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+
+  .row-title {
+    font-family: var(--font-sans);
+    font-size: 2rem;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
-    font-size: 0.72rem;
+    letter-spacing: -0.02em;
   }
 
-  .physio-values strong,
-  .treatment-grid strong,
-  .physio-reviews strong {
-    display: block;
-    margin: 0.6rem 0;
-    font-size: 1.16rem;
+  .row-desc {
+    color: var(--color-muted);
+    line-height: 1.6;
+    max-width: 600px;
+    font-size: 1.1rem;
   }
 
-  .treatment-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    margin-top: 1.5rem;
-  }
-
-  .physio-method {
+  /* Booking */
+  .blueprint-booking {
     display: grid;
-    grid-template-columns: 0.95fr 1.05fr;
-    gap: 1.2rem;
-    align-items: stretch;
+    grid-template-columns: 1fr;
   }
 
-  .method-image {
-    min-height: 440px;
-    border-radius: 34px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(29, 69, 73, 0.12)), url('https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1400&q=80') center/cover;
-  }
-
-  .method-copy {
+  .booking-grid {
     display: grid;
-    align-content: center;
+    grid-template-columns: 1fr 1fr;
   }
 
-  .method-copy ul {
-    display: grid;
-    gap: 0.75rem;
-    padding-left: 1rem;
+  .booking-blueprint {
+    border-right: 1px solid var(--color-border);
+    padding: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .physio-reviews {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .booking-blueprint img {
+    border: 1px solid var(--color-border);
+    width: 100%;
+    max-width: 400px;
   }
 
-  .physio-reviews p {
-    margin: 0 0 1rem;
-    color: #305456;
-    font-size: 1.18rem;
-    line-height: 1.4;
+  .booking-form-area {
+    padding: 6rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
   }
 
-  .physio-booking {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 1.4rem;
+  .blueprint-form .field-row {
+    border-bottom: 1px solid var(--color-border);
   }
 
-  .physio-form {
-    display: grid;
-    gap: 1rem;
-    padding: 1.2rem;
-    border-radius: 28px;
-    background: #eef8f5;
+  .blueprint-form input,
+  .blueprint-form select {
+    border: none !important;
+    background: transparent !important;
+    padding: 1.5rem 0 !important;
+    font-family: var(--font-mono) !important;
+    text-transform: uppercase;
+    font-size: 0.9rem !important;
+    letter-spacing: 0.1em;
   }
 
-  @media (max-width: 1080px) {
-    .physio-hero,
-    .physio-values,
-    .treatment-grid,
-    .physio-method,
-    .physio-reviews,
-    .physio-booking {
+  .blueprint-form input:focus,
+  .blueprint-form select:focus {
+    color: var(--color-accent) !important;
+    border-color: var(--color-accent) !important;
+  }
+
+  @media (max-width: 1024px) {
+    .blueprint-hero, .booking-grid {
       grid-template-columns: 1fr;
     }
+    .hero-data, .booking-blueprint {
+      border-right: none;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .table-row {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .row-num {
+      margin-bottom: 1rem;
+    }
+    .hero-visual {
+      padding: 2rem;
+    }
+    .hero-title-box, .booking-form-area {
+      padding: 3rem 2rem;
+    }
   }
 
-  @media (max-width: 720px) {
-    .physio-hero,
-    .physio-values,
-    .physio-treatments,
-    .physio-method,
-    .physio-booking {
-      padding: 1.2rem;
+  @media (max-width: 600px) {
+    .anatomy-container {
+      padding: 8rem 1.5rem 3rem;
     }
-
-    .hero-text h1,
-    .section-head h2,
-    .method-copy h2,
-    .physio-booking h2 {
-      font-size: clamp(2.4rem, 13vw, 4.2rem);
+    .hero-title-box, .booking-form-area {
+      padding: 2rem 1.5rem;
+      gap: 2rem;
+    }
+    .data-block {
+      padding: 1.5rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .table-row {
+      padding: 2rem 1.5rem;
+    }
+    .section-badge {
+      padding: 1.5rem;
     }
   }
 </style>
