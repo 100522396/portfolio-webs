@@ -1,0 +1,377 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const treatments = [
+  ['Dolor lumbar y cervical', 'Valoracion funcional, terapia manual y plan de movilidad en casa.'],
+  ['Recuperacion deportiva', 'Prevencion, readaptacion y trabajo de fuerza orientado al regreso seguro.'],
+  ['Suelo pelvico y postparto', 'Acompanamiento respetuoso con sesiones graduales y seguimiento.'],
+  ['ATM y cefaleas tensionales', 'Abordaje combinado para descargar, reeducar y reducir recurrencias.']
+];
+
+const reviews = [
+  ['“Explican todo con claridad y sales con sensacion real de mejora.”', 'Lucia M.'],
+  ['“La web transmite exactamente lo que luego encuentras en consulta: calma y profesionalidad.”', 'Diego P.'],
+  ['“Perfecta para una clinica que quiere verse cercana y moderna.”', 'Marta G.']
+];
+---
+
+<BaseLayout
+  title="Clinica Serena | Demo de fisioterapia"
+  description="Demo de una web de clinica de fisioterapia con tono profesional, cercano y orientado a solicitud de cita."
+  path="/fisioterapia"
+>
+  <section class="physio-hero section-shell">
+    <div class="hero-text">
+      <span class="eyebrow">Demo fisioterapia · confianza y claridad</span>
+      <h1>Moverse mejor tambien se comunica mejor.</h1>
+      <p>
+        Clinica Serena propone una presencia digital limpia y humana para centros de fisioterapia que necesitan generar
+        confianza, explicar sus tratamientos y facilitar la primera cita sin friccion.
+      </p>
+      <div class="hero-actions">
+        <a class="button primary" href="#cita">Solicitar cita</a>
+        <a class="button secondary" href="#tratamientos">Ver tratamientos</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <strong>Primera valoracion de 50 min</strong>
+      <p>Historia clinica, exploracion funcional y propuesta de tratamiento adaptada a objetivos reales.</p>
+      <dl>
+        <div>
+          <dt>Horario</dt>
+          <dd>Lun - Vie · 9:00 - 20:30</dd>
+        </div>
+        <div>
+          <dt>Ubicacion</dt>
+          <dd>Avenida del Puerto, 28 · Valencia</dd>
+        </div>
+        <div>
+          <dt>Especialidad</dt>
+          <dd>Dolor persistente, deporte y salud femenina</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="physio-values section-shell">
+    <article>
+      <span>Metodo</span>
+      <strong>Evaluamos antes de tratar</strong>
+      <p>La web ayuda a diferenciar una clinica que trabaja con criterio, seguimiento y educacion del paciente.</p>
+    </article>
+    <article>
+      <span>Confianza</span>
+      <strong>Diseno limpio y cercano</strong>
+      <p>Colores suaves, bloques aireados y copy claro para inspirar calma desde el primer scroll.</p>
+    </article>
+    <article>
+      <span>Conversion</span>
+      <strong>Cita sin friccion</strong>
+      <p>La llamada a la accion se integra de forma natural y hace facil dejar datos y motivo de consulta.</p>
+    </article>
+  </section>
+
+  <section class="physio-treatments section-shell" id="tratamientos">
+    <div class="section-head">
+      <span class="eyebrow">Tratamientos</span>
+      <h2>Servicios presentados con claridad clinica y lenguaje comprensible.</h2>
+    </div>
+    <div class="treatment-grid">
+      {treatments.map(([title, text]) => (
+        <article>
+          <strong>{title}</strong>
+          <p>{text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="physio-method section-shell">
+    <div class="method-image"></div>
+    <div class="method-copy">
+      <span class="eyebrow">Como trabaja la clinica</span>
+      <h2>Escuchar, valorar, tratar y acompanar.</h2>
+      <p>
+        Esta demo esta pensada para transmitir rigor sin resultar distante. Funciona especialmente bien para centros
+        que quieren combinar terapia manual, ejercicio terapeutico y seguimiento continuo.
+      </p>
+      <ul>
+        <li>Primera valoracion con objetivos medibles</li>
+        <li>Tratamiento adaptado a la causa y no solo al sintoma</li>
+        <li>Explicaciones claras para que el paciente entienda su proceso</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="physio-reviews section-shell">
+    {reviews.map(([quote, author]) => (
+      <article>
+        <p>{quote}</p>
+        <strong>{author}</strong>
+      </article>
+    ))}
+  </section>
+
+  <section class="physio-booking section-shell" id="cita">
+    <div>
+      <span class="eyebrow">Solicitud de cita</span>
+      <h2>Cuéntanos qué te pasa y te llamamos.</h2>
+      <p>Formulario demostrativo pensado para primeros contactos y seguimiento administrativo rapido.</p>
+    </div>
+    <form class="physio-form">
+      <div class="field-grid two">
+        <label>
+          Nombre y apellidos
+          <input type="text" name="nombre" placeholder="Tu nombre" />
+        </label>
+        <label>
+          Telefono
+          <input type="tel" name="telefono" placeholder="600 123 456" />
+        </label>
+      </div>
+      <div class="field-grid two">
+        <label>
+          Motivo de consulta
+          <select name="motivo">
+            <option>Dolor lumbar</option>
+            <option>Lesion deportiva</option>
+            <option>Postparto / suelo pelvico</option>
+            <option>ATM / cefalea</option>
+          </select>
+        </label>
+        <label>
+          Disponibilidad
+          <input type="text" name="disponibilidad" placeholder="Mananas o tardes" />
+        </label>
+      </div>
+      <label>
+        Describe brevemente tu caso
+        <textarea name="mensaje" placeholder="Llevo dos meses con molestia al correr, mejora con reposo pero vuelve al retomar..." />
+      </label>
+      <button class="button primary" type="submit">Solicitar cita</button>
+    </form>
+  </section>
+</BaseLayout>
+
+<style>
+  :global(body) {
+    background:
+      radial-gradient(circle at top right, rgba(86, 159, 160, 0.18), transparent 22%),
+      linear-gradient(180deg, #eef6f3 0%, #ddebe7 100%);
+  }
+
+  .physio-hero,
+  .physio-values,
+  .physio-treatments,
+  .physio-method,
+  .physio-reviews,
+  .physio-booking {
+    background: rgba(249, 253, 251, 0.84);
+  }
+
+  .physio-hero {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 1.4rem;
+    padding: 2rem;
+    min-height: 72vh;
+    background:
+      linear-gradient(120deg, rgba(248, 252, 250, 0.96), rgba(232, 244, 241, 0.85)),
+      radial-gradient(circle at top right, rgba(86, 159, 160, 0.18), transparent 36%);
+  }
+
+  .hero-text {
+    display: grid;
+    align-content: center;
+  }
+
+  .hero-text h1,
+  .section-head h2,
+  .method-copy h2,
+  .physio-booking h2 {
+    margin: 1rem 0;
+    max-width: 11ch;
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    line-height: 0.96;
+    letter-spacing: -0.06em;
+  }
+
+  .hero-text p,
+  .hero-card p,
+  .physio-values p,
+  .treatment-grid p,
+  .method-copy p,
+  .method-copy li,
+  .physio-booking p {
+    color: #54706f;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 1.4rem;
+  }
+
+  .hero-actions .button.primary,
+  .physio-form .button.primary {
+    background: linear-gradient(135deg, #3a8d8f 0%, #79c2ad 100%);
+  }
+
+  .hero-card {
+    align-self: center;
+    padding: 1.5rem;
+    border-radius: 32px;
+    background: linear-gradient(180deg, #ffffff 0%, #eef8f5 100%);
+    border: 1px solid rgba(58, 141, 143, 0.14);
+  }
+
+  .hero-card strong {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+  }
+
+  .hero-card dl {
+    display: grid;
+    gap: 1rem;
+    margin: 1.4rem 0 0;
+  }
+
+  .hero-card dt {
+    margin-bottom: 0.25rem;
+    color: #2e5456;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .hero-card dd {
+    margin: 0;
+  }
+
+  .physio-values,
+  .physio-treatments,
+  .physio-method,
+  .physio-booking {
+    padding: 1.8rem;
+  }
+
+  .physio-values,
+  .treatment-grid,
+  .physio-reviews {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .physio-values {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .physio-values article,
+  .treatment-grid article,
+  .physio-reviews article {
+    padding: 1.3rem;
+    border-radius: 24px;
+    background: linear-gradient(180deg, #ffffff 0%, #edf7f4 100%);
+    border: 1px solid rgba(58, 141, 143, 0.1);
+  }
+
+  .physio-values span {
+    color: #4a7a7b;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+  }
+
+  .physio-values strong,
+  .treatment-grid strong,
+  .physio-reviews strong {
+    display: block;
+    margin: 0.6rem 0;
+    font-size: 1.16rem;
+  }
+
+  .treatment-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 1.5rem;
+  }
+
+  .physio-method {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 1.2rem;
+    align-items: stretch;
+  }
+
+  .method-image {
+    min-height: 440px;
+    border-radius: 34px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(29, 69, 73, 0.12)), url('https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1400&q=80') center/cover;
+  }
+
+  .method-copy {
+    display: grid;
+    align-content: center;
+  }
+
+  .method-copy ul {
+    display: grid;
+    gap: 0.75rem;
+    padding-left: 1rem;
+  }
+
+  .physio-reviews {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .physio-reviews p {
+    margin: 0 0 1rem;
+    color: #305456;
+    font-size: 1.18rem;
+    line-height: 1.4;
+  }
+
+  .physio-booking {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 1.4rem;
+  }
+
+  .physio-form {
+    display: grid;
+    gap: 1rem;
+    padding: 1.2rem;
+    border-radius: 28px;
+    background: #eef8f5;
+  }
+
+  @media (max-width: 1080px) {
+    .physio-hero,
+    .physio-values,
+    .treatment-grid,
+    .physio-method,
+    .physio-reviews,
+    .physio-booking {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .physio-hero,
+    .physio-values,
+    .physio-treatments,
+    .physio-method,
+    .physio-booking {
+      padding: 1.2rem;
+    }
+
+    .hero-text h1,
+    .section-head h2,
+    .method-copy h2,
+    .physio-booking h2 {
+      font-size: clamp(2.4rem, 13vw, 4.2rem);
+    }
+  }
+</style>
