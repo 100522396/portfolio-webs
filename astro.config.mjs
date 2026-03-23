@@ -4,5 +4,5 @@ import vercel from '@astrojs/vercel';
 export default defineConfig({
   output: 'server',
   adapter: vercel({ mode: 'serverless' }),
-  site: 'https://estudio-brujula-web.vercel.app'
+  site: 'https://portfolio-webs-livid.vercel.app'
 });
